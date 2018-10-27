@@ -55,11 +55,13 @@ class Input extends Component {
 
   async registerGame() {
     const boolConfig = this.state.config;
-    const account = (await this.props.eth.web3.eth.getAccounts())[0];
+    // const account = (await this.props.eth.web3.eth.getAccounts())[0];
     const gameId = getConfigHash(boolConfig);
-    await this.props.eth.contract.methods.register(gameId).send({
-      from: account
-    });
+    // await this.props.eth.contract.methods.register(gameId).send({
+    //   from: account
+    // });
+    await this.props.chainoflifeController.register(gameId);
+
     this.props.eth.eventEmitter.on('data', event => {
       if(event.event === "StartGame" && event.returnValues.gameId === gameId) {
         this.setState({

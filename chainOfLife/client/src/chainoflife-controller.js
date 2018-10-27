@@ -1,6 +1,6 @@
 
 
-import ChainOfLife from '../build/ChainOfLife';
+import ChainOfLife from './build/ChainOfLife';
 import {providers, Contract} from 'ethers';
 import EthereumIdentitySDK from 'universal-login-sdk';
 const web3Abi = require('web3-eth-abi');
@@ -23,7 +23,7 @@ class ChainOfLifeController {
     }
 
     async executeMessage(methodName, params, value = 0) {
-        const abi = this.chainOfLifeContract.interface.abi.find(n => n.name == methodName);
+        const abi = this.chainOfLifeContract.interface.abi.find(n => n.name === methodName);
 
         const message = {
             to: this.chainOfLifeContractAddress,
